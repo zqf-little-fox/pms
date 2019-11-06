@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ujiuye.compare.mapper.BenchMarkingMapper" >
+  <insert id="saveInfo" >
+    insert into benchmarking values(null,#{companyName},#{salesAmount},#{year},#{business},#{priority},#{disadvantage},#{state},#{empCount},#{createTime},#{simpleDesc})
+  </insert>
+
+  <resultMap id="getBenchMarkingListResultMap" type="com.ujiuye.compare.bean.BenchMarking">
+    <id property="id" column="id"></id>
+    <result property="companyName" column="company_name"></result>
+    <result property="salesAmount" column="sales_amount"></result>
+    <result property="year" column="year"></result>
+    <result property="business" column="business"></result>
+    <result property="priority" column="priority"></result>
+    <result property="disadvantage" column="disadvantage"></result>
+    <result property="state" column="state"></result>
+    <result property="empCount" column="emp_count"></result>
+    <result property="createTime" column="create_time"></result>
+    <result property="simpleDesc" column="simple_desc"></result>
+  </resultMap>
+
+  <select id="getBenchMarkingList" resultMap="getBenchMarkingListResultMap">
+    select * from benchmarking
+  </select>
+
+  <select id="getAmountList" resultMap="getBenchMarkingListResultMap">
+    select id,company_name,sales_amount from benchmarking where year = #{year}
+  </select>
+</mapper>
